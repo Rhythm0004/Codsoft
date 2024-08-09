@@ -24,10 +24,10 @@ vectorizer = TfidfVectorizer()
 x_transformed = vectorizer.fit_transform(x)
 
 # Split the data into training and testing sets
-x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.3, random_state=42)
-
+x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.5, random_state=42)
+print("x_train", len(y_train))
 # Create and train the SVM model
-svc = SVC(kernel='linear', random_state=42)  # You can use different kernels like 'rbf', 'poly', etc.
+svc = SVC(kernel='sigmoid', random_state=42)  # You can use different kernels like 'rbf', 'poly', etc.
 svc.fit(x_train, y_train)
 
 # Make predictions on the test set
