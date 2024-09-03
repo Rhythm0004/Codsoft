@@ -22,7 +22,7 @@ x_transformed = vectorizer.fit_transform(x)
 x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.3, random_state=42)
 print("Training set size:", len(y_train))
 
-svc = SVC(kernel='rbf', random_state=42)  # You can use different kernels like 'rbf', 'poly', etc.
+svc = SVC(kernel='rbf', random_state=42)  
 svc.fit(x_train, y_train) 
 
 y_pred = svc.predict(x_test)

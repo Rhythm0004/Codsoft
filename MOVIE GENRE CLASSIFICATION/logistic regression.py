@@ -25,11 +25,10 @@ x_transformed = vectorizer.fit_transform(x)
 
 x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.3, random_state=42)
 
-# Using logistic regression
 log_reg = LogisticRegression(max_iter=1000)  
-log_reg.fit(x_train, y_train)  # Train the model
+log_reg.fit(x_train, y_train)  
 
-y_pred = log_reg.predict(x_test)  # Predict without converting to dense
+y_pred = log_reg.predict(x_test)  
 
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
@@ -38,7 +37,6 @@ print(classification_report(y_test, y_pred))
 
 print("\n------------------------------------------------------------------------------\n")
 
-# Load and process the test data (without genre labels)
 testData = fileToData("./test_data.txt", ['ID', 'TITLE', 'DESCRIPTION'])
 x_test_test = testData["TITLE"] + " " + testData["DESCRIPTION"]
 x_test_test_transformed = vectorizer.transform(x_test_test)

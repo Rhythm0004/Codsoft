@@ -23,7 +23,7 @@ x = data["TITLE"] + " " + data["DESCRIPTION"]
 vectorizer = TfidfVectorizer()
 x_transformed = vectorizer.fit_transform(x)
 
-x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.2, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.3, random_state=42)
 
 mnb = MultinomialNB()
 mnb.fit(x_train, y_train)
@@ -36,7 +36,6 @@ print(classification_report(y_test, y_pred))
 
 print("\n------------------------------------------------------------------------------\n")
 
-# Load and process the test data (without genre labels)
 testData = fileToData("./test_data.txt", ['ID', 'TITLE', 'DESCRIPTION'])
 x_test_test = testData["TITLE"] + " " + testData["DESCRIPTION"]
 x_test_test_transformed = vectorizer.transform(x_test_test)

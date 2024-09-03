@@ -19,21 +19,18 @@ def fileToData(file, columns):
 data = fileToData("./train_data.txt", ['ID', 'TITLE', 'GENRE', 'DESCRIPTION'])
 y = data["GENRE"]
 x = (data["TITLE"].fillna('') + " " + data["DESCRIPTION"].fillna(''))
-# Vectorize the text data using TF-IDF
+
 vectorizer = TfidfVectorizer()
 x_transformed = vectorizer.fit_transform(x)
 
-# Split the data into training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(x_transformed, y, test_size=0.3, random_state=42)
 print("x_train", len(y_train))
-# Create and train the SVM model
-svc = SVC(kernel='rbf', random_state=42)  # You can use different kernels like 'rbf', 'poly', etc.
+
+svc = SVC(kernel='rbf', random_state=42)  
 svc.fit(x_train, y_train) 
 
-# Make predictions on the test set
 y_pred = svc.predict(x_test)
 
-# Evaluate the model
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
 print(classification_report(y_test, y_pred))
@@ -41,7 +38,6 @@ print(classification_report(y_test, y_pred))
 
 print("\n------------------------------------------------------------------------------\n")
 
-# Load and process the test data (without genre labels)
 testData = fileToData("./test_data.txt", ['ID', 'TITLE', 'DESCRIPTION'])
 x_test_test = testData["TITLE"] + " " + testData["DESCRIPTION"]
 x_test_test_transformed = vectorizer.transform(x_test_test)
